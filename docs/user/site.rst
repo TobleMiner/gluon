@@ -84,7 +84,7 @@ opkg \: optional
 
     There are various patterns which can be used in the URLs:
 
-    - ``%n`` is replaced by the OpenWrt version codename
+    - ``%d`` is replaced by the OpenWrt distribution name ("openwrt")
     - ``%v`` is replaced by the OpenWrt version number (e.g. "17.01")
     - ``%S`` is replaced by the target board (e.g. "ar71xx/generic")
     - ``%A`` is replaced by the target architecture (e.g. "mips_24kc")

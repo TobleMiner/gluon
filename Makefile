@@ -67,7 +67,7 @@ define GluonTarget
 gluon_target := $(1)$$(if $(2),-$(2))
 GLUON_TARGETS += $$(gluon_target)
 GLUON_TARGET_$$(gluon_target)_BOARD := $(1)
-GLUON_TARGET_$$(gluon_target)_SUBTARGET := $(if $(3),$(3),$(2))
+GLUON_TARGET_$$(gluon_target)_SUBTARGET := $(2)
 endef
 
 include targets/targets.mk
@@ -140,7 +140,7 @@ $(LUA):
 
 	+@[ -e openwrt/.config ] || $(OPENWRTMAKE) defconfig
 	+@$(OPENWRTMAKE) tools/install
-	+@$(OPENWRTMAKE) package/lua/host/install
+	+@$(OPENWRTMAKE) package/lua/host/compile
 
 prepare-target: config $(LUA) ;
 

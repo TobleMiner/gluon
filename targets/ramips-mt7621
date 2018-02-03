@@ -14,8 +14,9 @@ factory
 
 ## ZBT
 
-device zbt-wg3526 zbt-wg3526 # BROKEN: Untested
+device zbt-wg3526-16m zbt-wg3526-16M # BROKEN: Untested
 factory
+manifest_alias zbt-wg3526
 
 fi
 
