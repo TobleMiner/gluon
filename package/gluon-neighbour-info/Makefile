@@ -5,15 +5,15 @@ PKG_VERSION:=1
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
+PKG_BUILD_DEPENDS := librespondd
 
 include ../gluon.mk
-
 
 define Package/gluon-neighbour-info
   SECTION:=gluon
   CATEGORY:=Gluon
   TITLE:=neighbour-info
-  DEPENDS:=
+  DEPENDS:=+librespondd
 endef
 
 define Package/gluon-neighbour-info/description
@@ -28,8 +28,10 @@ endef
 define Build/Configure
 endef
 
+TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include/librespondd-0
+
 define Build/Compile
-	CFLAGS="$(TARGET_CFLAGS)" CPPFLAGS="$(TARGET_CPPFLAGS)" $(MAKE) -C $(PKG_BUILD_DIR) $(TARGET_CONFIGURE_OPTS)
+	CFLAGS="$(TARGET_CFLAGS)" CPPFLAGS="$(TARGET_CPPFLAGS)" BUILD_DIR="$(BUILD_DIR)" $(MAKE) -C $(PKG_BUILD_DIR) $(TARGET_CONFIGURE_OPTS)
 	$(call GluonSrcDiet,./luasrc,$(PKG_BUILD_DIR)/luadest/)
 endef
 
