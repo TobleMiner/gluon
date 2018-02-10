@@ -28,6 +28,7 @@
 #include <json-c/json.h>
 #include <uci.h>
 #include <arpa/inet.h>
+#include <net/if.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -104,9 +105,13 @@ static int parse_blob_interface(struct blob_attr* iface_blobmsg, struct gluonuti
 		goto fail;
 	}
 
-	if(attrs[GLUONUTIL_IFACE_ATTR_DEVICE]) {
-		iface->device = strdup(blobmsg_get_string(attrs[GLUONUTIL_IFACE_ATTR_DEVICE]));
+	if(!attrs[GLUONUTIL_IFACE_ATTR_DEVICE]) {
+		return -ENOENT;
 	}
+
+	iface->device = strdup(blobmsg_get_string(attrs[GLUONUTIL_IFACE_ATTR_DEVICE]));
+	iface->ifindex = if_nametoindex(iface->device);
+
 	if(attrs[GLUONUTIL_IFACE_ATTR_UP]) {
 		iface->up = blobmsg_get_bool(attrs[GLUONUTIL_IFACE_ATTR_UP]);
 	}
@@ -144,15 +149,14 @@ static int parse_blob_interfaces(struct list_head *interfaces, struct blob_attr 
 		}
 		memset(iface, 0, sizeof(struct gluonutil_interface));
 		if((err = parse_blob_interface(cursor, iface))) {
-			goto fail_interface_alloc;
+			gluonutil_free_interface(iface);
+			continue;
 		}
 		list_add(&iface->list, interfaces);
 	}
 
 	return 0;
 
-fail_interface_alloc:
-	gluonutil_free_interface(iface);
 fail_interfaces:
 	gluonutil_free_interfaces(interfaces);
 fail:

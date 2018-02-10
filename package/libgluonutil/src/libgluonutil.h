@@ -37,6 +37,7 @@
 
 struct gluonutil_interface {
 	char *device;
+	unsigned int ifindex;
 	bool up;
 	char *proto;
 
