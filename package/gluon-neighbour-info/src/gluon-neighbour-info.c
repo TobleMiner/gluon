@@ -58,7 +58,7 @@ void usage() {
 	puts("  -h this help\n");
 }
 
-int respondd_callback(char* data, size_t data_len, void* priv) {
+int respondd_callback(char* data, size_t data_len, struct librespondd_pkt_info *pktinfo, void* priv) {
 	req_ctx *ctx = priv;
 
 	if(ctx->sse) {
