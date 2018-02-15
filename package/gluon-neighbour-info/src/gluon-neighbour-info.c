@@ -68,7 +68,7 @@ int respondd_callback(char* data, size_t data_len, struct librespondd_pkt_info *
 		fputs("data: ", stdout);
 	}
 
-	fwrite(data, 1, data_len, stdout);
+	fputs(data, stdout);
 
 	if(ctx->sse) {
 		fputs("\n\n", stdout);
