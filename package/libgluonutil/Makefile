@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libgluonutil
-PKG_VERSION:=1
+PKG_VERSION:=2
 CMAKE_INSTALL:=1
 
 PKG_LICENSE:=BSD-2-Clause
