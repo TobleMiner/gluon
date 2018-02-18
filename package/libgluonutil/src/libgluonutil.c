@@ -56,18 +56,22 @@ void gluonutil_free_interface(struct gluonutil_interface *iface) {
 	free(iface);
 }
 
-// list_for_each_entry doesn't work with ISO C
-#ifndef typeof
-#define typeof(_type) __typeof__((_type))
-#endif
-
-void gluonutil_free_interfaces(struct list_head* interfaces) {
+void gluonutil_free_interfaces(struct list_head *interfaces) {
 	struct gluonutil_interface *cursor, *next;
-	list_for_each_entry_safe(cursor, next, interfaces, list)
-	{
+	list_for_each_entry_safe(cursor, next, interfaces, list) {
 		list_del(&cursor->list);
 		gluonutil_free_interface(cursor);
 	}
+}
+
+static struct gluonutil_interface *find_interface_ifindex(unsigned int ifindex, struct list_head *interfaces) {
+	struct gluonutil_interface *cursor;
+	list_for_each_entry(cursor, interfaces, list) {
+		if(cursor->ifindex == ifindex) {
+			return cursor;
+		}
+	}
+	return NULL;
 }
 
 enum {
@@ -80,7 +84,7 @@ enum {
 #define ARRAY_SIZE(_arr) (sizeof((_arr)) / sizeof((*_arr)))
 #endif
 
-static int parse_blob_interface(struct blob_attr* iface_blobmsg, struct gluonutil_interface* iface) {
+static int parse_blob_interface(struct blob_attr *iface_blobmsg, struct gluonutil_interface *iface) {
 	int err = 0;
 
 	const struct blobmsg_policy iface_policy[] = {
@@ -152,6 +156,12 @@ static int parse_blob_interfaces(struct list_head *interfaces, struct blob_attr 
 			gluonutil_free_interface(iface);
 			continue;
 		}
+
+		if(find_interface_ifindex(iface->ifindex, interfaces)) {
+			gluonutil_free_interface(iface);			
+			continue;
+		}
+		
 		list_add(&iface->list, interfaces);
 	}
 
