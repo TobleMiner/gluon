@@ -8,8 +8,9 @@ PACKAGES_OPENWRT_REPO=https://github.com/openwrt/packages.git
 PACKAGES_OPENWRT_BRANCH=lede-17.01
 PACKAGES_OPENWRT_COMMIT=82ef2fd773987a72678a32b862f50085c3f57d56
 
-PACKAGES_GLUON_REPO=https://github.com/freifunk-gluon/packages.git
-PACKAGES_GLUON_COMMIT=6c38a5dd639ee4649bc98401c5b3bb27ff99de4d
+PACKAGES_GLUON_REPO=https://github.com/TobleMiner/packages.git
+PACKAGES_GLUON_BRANCH=feature-autoupdate-proxy
+PACKAGES_GLUON_COMMIT=b71da8220bbff95cee9ac2ccfe45ab95e7893631
 
 PACKAGES_ROUTING_REPO=https://github.com/openwrt-routing/packages.git
 PACKAGES_ROUTING_COMMIT=3aaa772ef520e5e02ddd6a3eecf67a81fad726f5
