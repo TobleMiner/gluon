@@ -151,6 +151,9 @@ all: prepare-target
 	+@$(LEDEMAKE)
 	@GLUON_SITEDIR='$(GLUON_SITEDIR)' scripts/copy_output.sh '$(GLUON_TARGET)'
 
+toolchain: prepare-target
+	+@$(LEDEMAKE) toolchain/install
+
 clean download: config
 	+@$(LEDEMAKE) $@
 
