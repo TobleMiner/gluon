@@ -25,5 +25,6 @@ factory
 
 # Fonera
 
-device fonera20n fonera20n
-factory
+device la-fonera-2.0n fonera20n
+# Alternate name
+alias fonera20n
