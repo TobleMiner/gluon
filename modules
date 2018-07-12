@@ -10,7 +10,7 @@ PACKAGES_OPENWRT_COMMIT=40da7ecf21ffe1f3523ffa430c406e1db58ce3d4
 
 PACKAGES_GLUON_REPO=https://github.com/TobleMiner/packages.git
 PACKAGES_GLUON_BRANCH=feature-autoupdate-proxy
-PACKAGES_GLUON_COMMIT=e1e431eba6a99e7287ceff352b6734b958bf4ecd
+PACKAGES_GLUON_COMMIT=1930a041b9c185777dfbcc6fdffb6498d2a26b9c
 
 PACKAGES_ROUTING_REPO=https://github.com/openwrt-routing/packages.git
 PACKAGES_ROUTING_BRANCH=openwrt-18.06
