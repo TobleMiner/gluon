@@ -1,8 +1,8 @@
 GLUON_FEEDS='openwrt gluon routing luci'
 
-LEDE_REPO=https://github.com/TobleMiner/openwrt.git
-LEDE_BRANCH=lede-17.01-update-uclient
-LEDE_COMMIT=271e880fff2b55f148951c6c0d735561baa36c9b
+LEDE_REPO=https://git.openwrt.org/openwrt/openwrt.git
+LEDE_BRANCH=lede-17.01
+LEDE_COMMIT=309414ee8d6cf2e31476133606b2e390b0efbac5
 
 PACKAGES_OPENWRT_REPO=https://github.com/openwrt/packages.git
 PACKAGES_OPENWRT_BRANCH=lede-17.01
