@@ -5,8 +5,8 @@ project(libgluonutil C)
 set_property(DIRECTORY PROPERTY COMPILE_DEFINITIONS _GNU_SOURCE)
 
 add_library(gluonutil SHARED libgluonutil.c)
-set_property(TARGET gluonutil PROPERTY COMPILE_FLAGS "-Wall -std=c99")
-target_link_libraries(gluonutil json-c uci)
+set_property(TARGET gluonutil PROPERTY COMPILE_FLAGS "-Wall -std=gnu99")
+target_link_libraries(gluonutil json-c uci ubox ubus)
 install(TARGETS gluonutil
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib

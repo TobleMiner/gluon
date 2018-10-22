@@ -1,10 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libgluonutil
-PKG_VERSION:=1
+PKG_VERSION:=2
 CMAKE_INSTALL:=1
 
 PKG_LICENSE:=BSD-2-Clause
+
+PKG_BUILD_DEPENDS := libubox libubus
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -13,7 +15,7 @@ define Package/libgluonutil
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=Gluon utility library
-  DEPENDS:=+libjson-c +libuci
+  DEPENDS:=+libjson-c +libuci +libubox +libubus
 endef
 
 define Package/libgluonutil/install

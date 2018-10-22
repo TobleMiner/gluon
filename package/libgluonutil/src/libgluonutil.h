@@ -1,4 +1,5 @@
 /*
+  Copyright (c) 2018, Tobias Schramm <tobleminer@gmail.com>
   Copyright (c) 2016, Matthias Schiffer <mschiffer@universe-factory.net>
   All rights reserved.
 
@@ -30,6 +31,26 @@
 #include <netinet/in.h>
 #include <stdbool.h>
 
+
+#include <libubus.h>
+#include <libubox/list.h>
+
+struct gluonutil_interface {
+	char *device;
+	unsigned int ifindex;
+	bool up;
+	char *proto;
+
+	struct list_head list;
+};
+
+char *gluonutil_mesh_protocols[] = {
+	"gluon_mesh",
+	"gluon_wired",
+};
+
+int gluonutil_get_mesh_interfaces(struct ubus_context* ubus_ctx, struct list_head *interfaces);
+void gluonutil_free_interfaces(struct list_head* interfaces);
 
 char * gluonutil_read_line(const char *filename);
 char * gluonutil_get_sysconfig(const char *key);
